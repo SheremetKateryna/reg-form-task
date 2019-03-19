@@ -1,0 +1,17 @@
+.button {
+    color: @colorInverse;
+    text-transform: uppercase;
+    width: 100%;
+    font-size: 14px;
+    padding: 15px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 0 40px 40px @colorAccent inset, 0 0 0 0 @colorAccent;
+    &:hover {
+        box-shadow: 0 0 10px 0 @colorAccent inset, 0 0 10px 4px @colorAccent;
+        color: @colorAccent;
+    }
+}

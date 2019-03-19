@@ -1,0 +1,34 @@
+.icon {
+fill: @colorField;
+&:hover {
+    cursor: pointer;
+    fill: @colorAccent;
+    }
+&__male, &__female {
+    position: absolute;
+    padding: 0 10px 5px 15px;
+    bottom: calc(50% - 10px);
+    left: 0;
+    fill: inherit;
+    border-bottom: 1px solid @colorText;
+
+    }
+&__female {
+    left: 40px;
+    }
+&__location {
+    margin-right: 15px;
+    &:hover {
+        cursor: auto;
+        fill: @colorField;
+        }
+    }
+&__question {
+    margin-left: auto;
+    display: block;
+    position: relative;
+    &:hover {
+        cursor: pointer;
+        }
+    }
+}

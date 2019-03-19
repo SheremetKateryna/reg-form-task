@@ -1,0 +1,93 @@
+.form {
+  font: 400 14px/18px @font;
+  color: @colorText;
+  margin: 0;
+   &_wrap {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   background: #fff; 
+   min-width: 400px;
+   border-radius: 2px;
+   box-shadow: 0px 2px 6px 0px rgba(0,0,0,.3);
+   padding-top: 40px;
+   }
+   &_main {
+    padding: 40px;
+   }
+   &_footer {
+    background: @colorBgFooter;
+   }
+   &_row {
+    display: flex;
+    align-items: center;
+    color: @colorAccent;
+    margin-bottom: 15px;
+    position: relative;
+   }
+   &_label {
+    min-width: 100px;
+   }
+   &_field {
+    width: 100%;
+    background:@colorInverse;
+    border: none;
+    border-bottom: 1px solid @colorField;
+    padding: 7px 0;
+        &__error {
+        color: @colorInvalid;
+        border-bottom-color: @colorInvalid;
+        }
+      &:invalid {
+        box-shadow: none;
+      }
+      &:focus {
+       box-shadow: none;
+       outline: none;
+      }
+   }
+   &_checkbox {
+    cursor: pointer;
+    fill: @colorField;
+    position: relative;
+    margin-right: 9px;
+    &__active,
+    &__active .icon {
+        border-bottom: 1px solid @colorAccent;
+        fill: @colorAccent;
+    }
+    &:hover .icon{
+        border-bottom-color: @colorAccent;
+        fill: @colorAccent;
+    }
+    &:focus {
+        outline: none;
+    }
+   }
+   &_checkbox-radio {
+        display: none;
+    }
+   &_select {
+      &:hover {
+        color: @colorText;
+      }
+   }
+   &_option {
+   list-style: none;
+   width: 100%;
+   color: @colorText;
+   }
+   &_location {
+    display: flex;
+    position: relative;
+   }
+   &_footer {
+    padding: 40px;
+   }
+   &_agreement {
+    text-align: center;
+    font: 400 12px/18px @font;
+   }
+
+}

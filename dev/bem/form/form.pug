@@ -1,0 +1,53 @@
+include ../../svg
+
++svg
+mixin form
+  .form_wrap
+    h2.h2 Sign up for FREE!
+    form.form#form(action="#" method="post" novalidate)
+      .form_main
+        .form_row
+          label.form_label(for="gender") I am
+          .form_checkbox.form_checkbox__active
+            input.form_checkbox-radio(type="radio" name="gender" value="male" checked)
+            svg.icon.icon__male(width="24px" height="24px")
+              use(xlink:href="#male")
+          .form_checkbox
+            input.form_checkbox-radio(type="radio" name="gender" value="female")
+            svg.icon.icon__female(width="26px" height="25px")
+              use(xlink:href="#female")
+        .form_row
+          label.form_label(for="year") Year of birth
+          select.form_field.form_select#year
+          .tooltip
+        .form_row
+          label.form_label(for="email") Email
+          input.form_field#email(type='email', name='mail', placeholder='', required='')
+          .tooltip
+        .form_row
+          label.form_label(for="password") Password
+          input.form_field#password(type="password" name="pasword" required)
+          .tooltip
+        .form_row
+          label.form_label(for="postcode") Postal Code
+          input.form_field#postcode(type="text" name="postcode" required)
+          .tooltip 
+        .form_location
+          svg.icon.icon__location(width="20px" height="20px")
+              use(xlink:href="#location")
+          span E.g. Berlin or 10432
+          svg.icon.icon__question(width="20px" height="20px")
+              use(xlink:href="#question")
+          .tooltip.tooltip_inform
+      .form_footer
+        input#submit.button(type='submit', name='submit', value='Register now!')
+        .form_agreement 
+            | By clicking the button above you agree to our 
+            a(href="#") Terms of Use
+            br
+            |  and 
+            a(href="#") Privacy Policy
+            |  including use of cookies.
+
+
+
