@@ -46,7 +46,7 @@ email.blur(function(){
             email.removeClass('form_field__error').addClass('ok');
     }else{
         $(this).next('.tooltip').css('visibility','visible');
-        $(this).next('.tooltip').text('Please include an @ in the eemail address');
+        $(this).next('.tooltip').text('Please include an @ in the email address');
         $('#submit').attr('disabled', true);
         email.addClass('form_field__error');
     }
