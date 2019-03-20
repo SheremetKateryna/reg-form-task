@@ -470,6 +470,7 @@ a:hover {
   fill: #a9a9a9;
   position: relative;
   margin-right: 9px;
+  border-bottom: 1px solid #a9a9a9;
 }
 .form_checkbox__active,
 .form_checkbox__active .icon {
