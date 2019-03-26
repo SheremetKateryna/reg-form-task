@@ -32,7 +32,7 @@ question.hover(function(){
                 },
                 1500
     );;
-    $('.tooltip_inform').text('We don`t use postal postcodes to cantact members directly');
+    $('.tooltip_inform').text('We don`t use postal postcodes to contact members directly');
   }, 
     function(){
         question.next('.tooltip_inform').animate(
