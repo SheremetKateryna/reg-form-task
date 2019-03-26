@@ -114,8 +114,7 @@ var input=$(this);
 password.blur(function(){
     var input=$(this);
     if(input.val() != ''){
-        password.next('.tooltip').css('visibility','hidden');
-        password.removeClass('form_field__error');
+        hideLabel(password);
     } else {
         showLabel(password, message);
     }
