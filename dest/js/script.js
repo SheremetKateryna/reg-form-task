@@ -19,14 +19,28 @@ $('.form_checkbox').on('click', function() {
                .toggleClass('form_checkbox__active');
     });
 
-// Add inform tooltip to Postal postcode
+// Hover effect on Postal postcode informative tooltip
 
-$('.icon__question').hover(function(){
-     $('.tooltip_inform').css('visibility','visible');
-     $('.tooltip_inform').text('We don`t use postal postcodes to cantact members directly');
+var question = $('.icon__question');
+
+question.hover(function(){
+    question.next('.tooltip_inform')
+             .css('visibility','visible')
+             .animate(
+                {
+                  opacity: 1.0
+                },
+                1500
+    );;
+    $('.tooltip_inform').text('We don`t use postal postcodes to cantact members directly');
   }, 
-  function(){
-  $('.tooltip_inform').css('visibility','hidden');
+    function(){
+        question.next('.tooltip_inform').animate(
+            {
+              opacity: 0
+            },
+            1000
+        );;
 });
 
 // Function to show tooltip 
