@@ -19,7 +19,7 @@ $('.form_checkbox').on('click', function() {
                .toggleClass('form_checkbox__active');
     });
 
-// add inform tooltip to Postal postcode
+// Add inform tooltip to Postal postcode
 
 $('.icon__question').hover(function(){
      $('.tooltip_inform').css('visibility','visible');
@@ -29,97 +29,104 @@ $('.icon__question').hover(function(){
   $('.tooltip_inform').css('visibility','hidden');
 });
 
+// Function to show tooltip 
+
+function showLabel(el, message) {
+    el.addClass('form_field__error')
+      .next('.tooltip').css('visibility','visible').animate(
+    {
+      opacity: 1.0
+    },
+    2500
+  );
+    el.next('.tooltip').text(message);
+}
+
+// Function to hide tooltip
+
+function hideLabel(el) {
+    el.next('.tooltip').animate(
+    {
+      opacity: 0
+    },
+    1000
+  );
+  el.removeClass('form_field__error');
+}
+
+// Error messages
+
+let message='This field can not be empty';
+let messageYear='You must be at least 18 year old';
+let messageEmail='Please include an @ in the email address';
 
 // Validation form
 
-var pattern = /^[a-z0-9_-]+@[a-z0-9-]+\.[a-z]{2,6}$/i;
+year.change(function(){
+var age = $("#year option:selected").text();
+    if (currentYear - +age > 17) {
+        hideLabel(year);
+    } else {
+        showLabel(year, messageYear);
+    }
+});
+
 var email = $('#email');
 var postcode = $('#postcode');
 var password = $('#password');
 var submit = $('#submit');
 
 email.blur(function(){
-    if(email.val() != ''){
-        if(email.val().search(pattern) == 0){
-            $(this).next('.tooltip').css('visibility','hidden');
-            $('#submit').attr('disabled', false);
-            email.removeClass('form_field__error').addClass('ok');
-    }else{
-        $(this).next('.tooltip').css('visibility','visible');
-        $(this).next('.tooltip').text('Please include an @ in the email address');
-        $('#submit').attr('disabled', true);
-        email.addClass('form_field__error');
-    }
-    }else{
-        $(this).next('.tooltip').css('visibility','visible');
-        $(this).next('.tooltip').text('This field can not be empty');
-        email.addClass('form_field__error');
-        $('#submit').attr('disabled', true);
+    var input=$(this);
+    var pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (input.val() == '') {
+        showLabel(email, message);
+    } else if (pattern.test(input.val())) {
+        hideLabel(email);
+    } else {
+        showLabel(email, messageEmail);
     }
 });
 
 postcode.blur(function(){
-    if(postcode.val() != ''){
-        $(this).next('.tooltip').css('visibility','hidden');
-        $('#submit').attr('disabled', false);
-        postcode.removeClass('form_field__error').addClass('ok');
-    }else{
-        $(this).next('.tooltip').css('visibility','visible');
-        $(this).next('.tooltip').text('This field can not be empty');
-        postcode.addClass('form_field__error');
-        $('#submit').attr('disabled', true);
+    var input=$(this);
+    if (input.val() != ''){
+        hideLabel(postcode);
+    } else {
+        showLabel(postcode, message);
     }
 });
 
 password.blur(function(){
-    if(password.val() != ''){
-        $(this).next('.tooltip').css('visibility','hidden');
-        $('#submit').attr('disabled', false);
-        password.removeClass('form_field__error').addClass('ok');
-    }else{
-        $(this).next('.tooltip').css('visibility','visible');
-        $(this).next('.tooltip').text('This field can not be empty');
-        password.addClass('form_field__error');
-        $('#submit').attr('disabled', true);
-    }
-});
-
-year.change(function(){
-var age = $("#year option:selected").text();
-    if(currentYear - +age > 17) {
-        $(this).next('.tooltip').css('visibility','hidden');
-        $(this).next('#submit').attr('disabled', false);
-        year.removeClass('form_field__error').addClass('ok');
+    var input=$(this);
+    if(input.val() != ''){
+        password.next('.tooltip').css('visibility','hidden');
+        password.removeClass('form_field__error');
     } else {
-        $(this).next('.tooltip').css('visibility','visible');
-        $(this).next('.tooltip').text('You must be at least 18 year old');
-        year.addClass('form_field__error');
-        $('#submit').attr('disabled', true);
-}
+        showLabel(password, message);
+    }
 });
 
- 
-var yearSelected = $("#year option:selected").text();
-submit.click(function() {
-if ($('.form')[0].checkValidity()){
-    console.log("Form is valid")
-} else {
-    if (email.val() == "") {
-        $('.tooltip').css('visibility','visible');
-        $('.tooltip').text('This field can not be empty');
-    }
-    if (password.val() == "") {
-        $('.tooltip').css('visibility','visible');
-        $('.tooltip').text('This field can not be empty');
-    }
-    if (postcode.val() == "") {
-        $('.tooltip').css('visibility','visible');
-        $('.tooltip').text('This field can not be empty');
-    }
-    if (yearToday - +yearSelected < 19) {
-        $('.tooltip').css('visibility','visible');
-        $('.tooltip').text('You must be at least 18 year old');
-    }
-}
-});
+// After Form Submitted Validation
 
+var form = $('#form');
+
+form.on('click', '#submit', function(e) {
+    if (form[0].checkValidity()){
+        console.log('Form is valid');
+    } else {
+         e.preventDefault();
+            if (currentYear - +$('#year option:selected').text() <= 17) {
+            showLabel(year, messageYear);
+            }
+            if (email.val() == '') {
+                showLabel(email, message);
+            }
+            if (password.val() == '') {
+                showLabel(password, message);
+            }
+            if (postcode.val() == '') {
+                showLabel(postcode, message);
+            }
+    }
+});
