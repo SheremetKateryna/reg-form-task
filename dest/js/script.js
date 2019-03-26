@@ -77,19 +77,19 @@ var password = $('#password');
 var submit = $('#submit');
 
 email.blur(function(){
-    var input=$(this);
-    var pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+var input=$(this);
+var pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (input.val() == '') {
         showLabel(email, message);
     } else if (pattern.test(input.val())) {
         hideLabel(email);
     } else {
         showLabel(email, messageEmail);
-    }
+   }
 });
 
 postcode.blur(function(){
-    var input=$(this);
+var input=$(this);
     if (input.val() != ''){
         hideLabel(postcode);
     } else {
